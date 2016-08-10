@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
                 mysql1_puppet.hiera_config_path = "hiera.yaml"
 
                 mysql1_puppet.manifest_file = "site.pp"
-                mysql1_puppet.options = "--verbose --debug"
+                mysql1_puppet.options = "--verbose"
         end
   end
   config.vm.define :mysql2 do |mysql2_config|
