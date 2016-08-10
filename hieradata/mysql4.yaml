@@ -1,0 +1,10 @@
+---
+classes:
+    - mysqlgr
+
+mysqlgr::mysql_serverid:	4
+mysqlgr::mysql_root_password:	fred
+mysqlgr::group_seeds: 		"192.168.90.2:3406,192.168.90.3:3406,192.168.90.4:3406"
+mysqlgr::bootstrap:		false
+mysqlgr::mysql_bind_interface:	eth1
+
