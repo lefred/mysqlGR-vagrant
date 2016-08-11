@@ -9,7 +9,8 @@ class mysqlgr::packages {
 		get_labs:
 			path 	=> ['/usr/bin', '/bin'],
 			unless  => "test -f /vagrant/mysql-$versiontgz-$architecture.rpm.tar.gz || rpm -q  mysql-community-server >/dev/null",
-                        cwd	=> '/vagrant',
+            cwd	=> '/vagrant',
+            timeout => 3600,
 			command	=> "wget http://downloads.mysql.com/snapshots/pb/mysql-group-replication-0.8.0-labs/mysql-$versiontgz-$architecture.rpm.tar.gz";
 		extract_labs:
 			path 	=> ['/usr/bin', '/bin'],
