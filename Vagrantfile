@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
         mysql1_config.vm.hostname = "mysql1"
         #mysql1_config.ssh.max_tries = 100
         mysql1_config.vm.provider :virtualbox do |mysql1_vb|
-                mysql1_vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50", "--memory", "256", "--ioapic", "on"]
+                mysql1_vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50", "--memory", "1024", "--ioapic", "on"]
                 #mysql1_vb.gui = true
         end
         mysql1_config.vm.network :private_network, ip: "192.168.90.2"
@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
         #mysql2_config.ssh.max_tries = 100
         #mysql1_config.vm.boot_mode = :gui
         mysql2_config.vm.provider :virtualbox do |mysql2_vb|
-                mysql2_vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50", "--memory", "256", "--ioapic", "on"]
+                mysql2_vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50", "--memory", "1024", "--ioapic", "on"]
         end
         mysql2_config.vm.network :private_network, ip: "192.168.90.3"
         mysql2_config.vm.provision :puppet do |mysql2_puppet|
@@ -51,7 +51,7 @@ Vagrant.configure("2") do |config|
         #mysql3_config.ssh.max_tries = 100
         #mysql1_config.vm.boot_mode = :gui
         mysql3_config.vm.provider :virtualbox do |mysql3_vb|
-                mysql3_vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50", "--memory", "256", "--ioapic", "on"]
+                mysql3_vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50", "--memory", "1024", "--ioapic", "on"]
         end
         mysql3_config.vm.network :private_network, ip: "192.168.90.4"
         mysql3_config.vm.provision :puppet do |mysql3_puppet|
@@ -80,7 +80,7 @@ Vagrant.configure("2") do |config|
 #                mysql4_puppet.manifest_file = "site.pp"
 #                mysql4_puppet.options = "--verbose"
 #		mysql4_puppet.hiera_config_path = "hiera.yaml"
-#        end
+#       end
 #  end
 end
 

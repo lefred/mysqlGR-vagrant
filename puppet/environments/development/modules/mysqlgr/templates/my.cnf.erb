@@ -7,6 +7,17 @@ bind-address=<%= scope.lookupvar('mysqlgr::mysql_ip') %>
 #InnoDB settings
 innodb_log_file_size=64M
 innodb_file_per_table=1
+#innodb_flush_log_at_trx_commit=0
+#sync_binlog = 0
+#innodb_buffer_pool_size = 20M
+
+<% if has_variable?("use_ssl") and @use_ssl == true then %>
+loose-group_replication_ssl_mode=REQUIRED
+
+ssl-ca = ca.pem
+ssl-cert = server-cert.pem
+ssl-key = server-key.pem
+<% end %>
 
 #Replication settings
 <% if has_variable?("mysqlserverid") and @mysqlserverid.to_s != "undef" then %>server-id=<%= @mysqlserverid %> <% end %>
@@ -44,7 +55,7 @@ loose-group_replication_start_on_boot   = off
 loose-group_replication_local_address   = "<%= scope.lookupvar('mysqlgr::mysql_ip') %>:3406"
 loose-group_replication_group_seeds     = "<%= scope.lookupvar('mysqlgr::group_seeds') %>"
 loose-group_replication_bootstrap_group = off
-loose-group_replication 		= FORCE_PLUS_PERMANENT
+#loose-group_replication 		= FORCE_PLUS_PERMANENT
 
 [mysql]
 user=root

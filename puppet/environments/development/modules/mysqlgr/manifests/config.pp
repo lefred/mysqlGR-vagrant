@@ -2,6 +2,7 @@ class mysqlgr::config {
 
  $root_password = $mysqlgr::mysql_root_password
  $old_root_password = $mysqlgr::mysql_old_root_password
+ $use_ssl = $mysqlgr::use_ssl
 
  if $root_password != undef {
    case $old_root_password {
@@ -46,11 +47,21 @@ class mysqlgr::config {
 
  exec {
  	"initialize_mysql":
-        	path    => ['/sbin', '/usr/bin', '/bin'],
+                path    => ['/sbin', '/usr/bin', '/bin'],
                 unless  => "test -f /var/lib/mysql/ibdata1",
                 require => Package['mysql-community-server'],
                 command => "mysqld --initialize-insecure -u mysql --datadir /var/lib/mysql";
  }
 
+ if ( $use_ssl ) {
+    exec {
+        "create_certs":
+                path    => ['/sbin', '/usr/bin', '/bin'],
+                unless  => "test -f /var/lib/mysql/server-key.pem",
+                require => Package['mysql-community-server'],
+                command => "mysql_ssl_rsa_setup --uid=mysql";
+    }
+ }
+    
 
 }
