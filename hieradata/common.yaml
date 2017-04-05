@@ -1,24 +1,3 @@
-# mysqlGR-vagrant
-Vagrant and Puppet environment for MySQL Community Group Replication
-
-
-This Vagrant environment requires vagrant-hostmanager plugin.
-
-The purpose of this environment is to setup a MySQL Group of 3 members, CentOS 7 x86_64 for testing.
-
-It also includes a puppet module that can be used as base for a Group Replication deployment out of Vagrant.
-
-More info on GR & InnoDB Cluster:
-
-- http://lefred.be/content/mysql-group-replication-beta-0-8-is-out/
-- http://lefred.be/content/mysql-innodb-cluster-automated-installation-with-puppet/
-
-This environment is using hiera, this is how you can configure a group and the nodes:
-
-common.yaml
------------
-
-```
 ---
 classes:
     - getridoflocaldomain
@@ -47,34 +26,3 @@ innodbcluster::grant::password: >
     ODIieTA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBBJEeoyzHtW/WGpbiUz
     gcXTgBAnb1gGrBZAfAiv/ztwuZ9z]
 innodbcluster::seed: mysql1
-```
-
-mysql1.yaml
------------
-```
----
-classes:
-    - innodbcluster
-
-innodbcluster::mysql_serverid:  1
-```
-
-mysql2.yaml
------------
-```
----
-classes:
-    - innodbcluster
-
-innodbcluster::mysql_serverid:  2
-```
-
-mysql3.yaml
------------
-```
----
-classes:
-    - innodbcluster
-
-innodbcluster::mysql_serverid:  3
-```
