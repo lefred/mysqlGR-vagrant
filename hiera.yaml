@@ -1,5 +1,6 @@
 ---
 :backends:
+  - eyaml
   - yaml
 :yaml:
   :datadir: /vagrant/hieradata
@@ -7,4 +8,9 @@
   - "%{::hostname}"
   - "%{::operatingsystem}"
   - common
-
+:eyaml:
+  :datadir: /vagrant/hieradata
+  :pkcs7_private_key: /vagrant/keys/private_key.pkcs7.pem
+  :pkcs7_public_key: /vagrant/keys/public_key.pkcs7.pem
+  :extension: 'yaml'
+:logger: console

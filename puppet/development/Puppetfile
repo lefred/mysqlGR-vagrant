@@ -1,0 +1,7 @@
+forge "https://forgeapi.puppetlabs.com"
+
+mod "lefred/innodbcluster",
+  :git =>  "https://github.com/lefred/puppet-lefred-innodbcluster",
+  :ref => 'master'
+
+
